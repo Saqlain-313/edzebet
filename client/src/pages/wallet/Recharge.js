@@ -8,7 +8,6 @@ import PaytmIcon from "../../assets/paytm.jpg";
 import UpiIcon from "../../assets/upi.png";
 import USDt1Img from "../../assets/usdt1.png";
 import UsdtIcon from "../../assets/usdt.png";
-import tron from "../../assets/tron.png";
 import { GiSwipeCard, GiWhiteBook } from "react-icons/gi";
 import { FaSquare } from "react-icons/fa";
 import CopyCopmponent from "../../components/CopyCopmponent";
@@ -37,17 +36,17 @@ export default function Recharge() {
   const [alertsuccess, setAlertsuccess] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const tabs = [
-    { label: "Trx", Icons: tron },
-    // { label: "USDT", Icons: "" },
+    { label: "Trx", Icons: EWalletIcon },
+    { label: "USDT", Icons: UsdtIcon },
   ];
 
   const handleSubmit = async () => {
-    const data = {
-      amount: amount,
-      type: "Trx",
-    };
+    const type = "Trx";
+    const formData = new FormData();
+    formData.append("amount", amount);
+    formData.append("type", type);
 
-    dispatch(recharge(data)).then((res) => {
+    dispatch(recharge(formData)).then((res) => {
       setSuccessMessage(res.payload.message);
       if (res.payload.status) {
         setAlertsuccess(true);
@@ -156,14 +155,14 @@ export default function Recharge() {
                 }
               }}
             >
-              <img src={tab.Icons} alt="" className="w-14" />
+              <img src={tab.Icons} alt="" className="w-10" />
               <span> {tab.label}</span>
             </button>
           ))}
         </div>
         <div className="mt-4">
           <>
-            <div className="nav-bg  p-2 py-3 pb-5 rounded-lg hidden">
+            <div className="nav-bg  p-2 py-3 pb-5 rounded-lg">
               <h2 className="text-lg mb-2 flex items-center gray-50">
                 <GiSwipeCard className="color-blue border-b border-blue-500 mr-2" />{" "}
                 Select channel
@@ -179,7 +178,7 @@ export default function Recharge() {
                             className={` p-2 rounded-md cursor-pointer ${
                               index === activeIndex
                                 ? "blue-linear color-orange"
-                                : "bg-grays"
+                                : "bg-grays black-2"
                             } `}
                             onClick={() => {
                               setActiveTab2(item.label);
@@ -221,7 +220,7 @@ export default function Recharge() {
                                   onClick={() => setAmount(data.am)}
                                 >
                                   <img
-                                    src={UsdtIcon}
+                                    src={USDt1Img}
                                     alt=""
                                     className="w-5 mr-2"
                                   />{" "}
@@ -238,7 +237,7 @@ export default function Recharge() {
                 </div>
 
                 <div className="bg-body flex items-center px-5 py-1 rounded-lg mt-4">
-                  <img src={UsdtIcon} alt="" className="w-5" />
+                  <img src={USDt1Img} alt="" className="w-5" />
 
                   <input
                     type="number"
@@ -404,64 +403,64 @@ const channels = [
   {
     label: "Trx",
     channelItem: [
-      {
-        label: "P-pay",
-        balance: "100 - 50K",
-        depositAmount: [
-          {
-            am: 100,
-          },
-          {
-            am: 200,
-          },
-          {
-            am: 500,
-          },
-          {
-            am: 1000,
-          },
+      // {
+      //   label: "P-pay",
+      //   balance: "100 - 50K",
+      //   depositAmount: [
+      //     {
+      //       am: 100,
+      //     },
+      //     {
+      //       am: 200,
+      //     },
+      //     {
+      //       am: 500,
+      //     },
+      //     {
+      //       am: 1000,
+      //     },
 
-          {
-            am: 20000,
-          },
-          {
-            am: 50000,
-          },
-          {
-            am: 10000,
-          },
-        ],
-      },
+      //     {
+      //       am: 20000,
+      //     },
+      //     {
+      //       am: 50000,
+      //     },
+      //     {
+      //       am: 10000,
+      //     },
+      //   ],
+      // },
 
-      {
-        label: "LG-pay",
-        balance: "100 - 50K",
-        depositAmount: [
-          {
-            am: 100,
-          },
-          {
-            am: 500,
-          },
-          {
-            am: 1000,
-          },
+      // {
+      //   label: "LG-pay",
+      //   balance: "100 - 50K",
+      //   depositAmount: [
+      //     {
+      //       am: 100,
+      //     },
+      //     {
+      //       am: 500,
+      //     },
+      //     {
+      //       am: 1000,
+      //     },
 
-          {
-            am: 20000,
-          },
-          {
-            am: 50000,
-          },
-          {
-            am: 10000,
-          },
-          {
-            am: 50000,
-          },
-        ],
-      },
-
+      //     {
+      //       am: 20000,
+      //     },
+      //     {
+      //       am: 50000,
+      //     },
+      //     {
+      //       am: 10000,
+      //     },
+      //     {
+      //       am: 50000,
+      //     },
+      //   ],
+      // },
+    //  
       {
         label: "Watch Pay",
         balance: "200 - 50K",
