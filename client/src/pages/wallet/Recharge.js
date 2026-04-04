@@ -460,7 +460,7 @@ const channels = [
       //     },
       //   ],
       // },
-
+    //  
       {
         label: "Watch Pay",
         balance: "200 - 50K",
